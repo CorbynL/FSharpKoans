@@ -9,15 +9,15 @@ Lists are immutable, ordered, finite sequences of a single type.
 module ``05: I Have Here In My Hand A List`` = 
     [<Test>]
     let ``01 Creating a list (Syntax 1).`` () = 
-        let myList = [ __; __; __; __ ]
+        let myList = [ "apple"; "grape"; "pear"; "biscuit" ]
         myList |> should equal [ "apple"; "grape"; "pear"; "biscuit" ]
    
     [<Test>]
     let ``02 Creating a list (Syntax 2).`` () =
-        let myList = __::__::__::__::[]
-        let myOtherList = __::__::__::[ __ ]
-        let myNextList = __::__::__ // you may use [ and ] symbols on this line.
-        let myLastList = __::__::__ // DO NOT use [ or ] symbols on this line!
+        let myList = "apple"::"grape"::"pear"::"biscuit"::[]
+        let myOtherList = "orange"::"lemon"::"princess"::[ "queen" ]
+        let myNextList = "lily"::"sunflower"::["daisy"; "carrot"] // you may use [ and ] symbols on this line.
+        let myLastList =  "naartjie"::"raisin"::["apple"; "grape"; "pear"; "biscuit"] // DO NOT use [ or ] symbols on this line!
         myList |> should equal [ "apple"; "grape"; "pear"; "biscuit" ]
         myOtherList |> should equal [ "orange"; "lemon"; "princess"; "queen" ]
         myNextList |> should equal ["lily"; "sunflower"; "daisy"; "carrot"]
@@ -27,7 +27,7 @@ module ``05: I Have Here In My Hand A List`` =
     let ``03 Creating a list (via concatenation).`` () =
         let a = [902; 10]
         let b = [3; 13; 37]
-        let result = __ @ __
+        let result = [902; 10] @ [3; 13; 37]
         result |> should equal [902; 10; 3; 13; 37]
 
     [<Test>]
@@ -35,9 +35,9 @@ module ``05: I Have Here In My Hand A List`` =
         let first = [ "grape"; "peach" ]
         let second = "pear" :: first
         let third = "apple" :: second
-        third |> should equal __
-        second |> should equal __
-        first |> should equal __
+        third |> should equal [ "apple";"pear";"grape"; "peach" ]
+        second |> should equal ["pear";"grape"; "peach"]
+        first |> should equal [ "grape"; "peach" ]
 
     [<Test>]
     let ``05 Pattern-matching a list (Part 1).`` () =

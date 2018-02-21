@@ -43,21 +43,21 @@ module ``05: I Have Here In My Hand A List`` =
     let ``05 Pattern-matching a list (Part 1).`` () =
         let fruits = ["apple"; "peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
         let a::_ = fruits
-        a |> should equal __
+        a |> should equal "apple"
 
     [<Test>]
     let ``06 Pattern-matching a list (Part 2).`` () =
         let fruits = ["apple"; "peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
         let b::c::_ = fruits
-        b |> should equal __
-        c |> should equal __
+        b |> should equal "apple"
+        c |> should equal "peach"
 
     [<Test>]
     let ``07 Pattern-matching a list (Part 3).`` () =
         let fruits = ["apple"; "peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
         let _::d::e = fruits
-        d |> should equal __
-        e |> should equal __
+        d |> should equal "peach"
+        e |> should equal ["orange"; "watermelon"; "pineapple"; "tomato"]
 
     [<Test>]
     let ``08 Pattern-matching a list (Part 4).`` () =

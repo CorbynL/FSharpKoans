@@ -96,7 +96,11 @@ module ``05: I Have Here In My Hand A List`` =
     let ``12 Pattern-matching a list (Part 8).`` () =
         let fruits = ["apple"; "peach"; "orange"; "watermelon"; "pineapple"; "tomato"]
         let [_;s;_;_;t;_] = fruits
+<<<<<<< HEAD
         s |> should equal "peach"
+=======
+        s |> should equal  "peach"
+>>>>>>> bf54807b277126581ba349e67ed5a620a89bdb41
         t |> should equal "pineapple"
 
     [<Test>]
@@ -113,5 +117,10 @@ module ``05: I Have Here In My Hand A List`` =
     let ``14 Creating a list containing a sequence of numbers, and indexing`` () =
         let k = [6..50]
         let l = [3..3..20]
+<<<<<<< HEAD
         k.[3] |> should equal 9
         l.[3] |> should equal 12
+=======
+        k.[3] |> should equal 9 // indexing starts a 0
+        l.[3] |> should equal 12 // start at 3, step 3 each increment, end at 20
+>>>>>>> bf54807b277126581ba349e67ed5a620a89bdb41

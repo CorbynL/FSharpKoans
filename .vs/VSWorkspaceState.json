@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.nuget",
     "\\FSharpKoans"
   ],
-  "SelectedNode": "\\FSharpKoans\\AboutBasicTypes.fs",
   "PreviewInSolutionExplorer": false
 }

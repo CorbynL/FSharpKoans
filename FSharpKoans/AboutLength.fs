@@ -40,15 +40,15 @@ module ``13: Finding the length of a list`` =
 
     [<Test>]
     let ``01 Finding the length of a list, the hard way`` () =
-        let rec length (xs : 'a list) : int =
+        let rec length xs v : int =
             match xs with // write a function to find the length of a list
-            | [] -> 0
-            | _ :: tail -> 1 + length tail
+            | [] -> v
+            | _ :: tail -> length tail (v + 1)
 
-        length [9;8;7] |> should equal 3
-        length [] |> should equal 0
-        length ["Le Comte de Monte-Cristo"] |> should equal 1
-        length [9;3;4;1;6;5;4] |> should equal 7
+        length [9;8;7] 0 |> should equal 3
+        length [] 0|> should equal 0
+        length ["Le Comte de Monte-Cristo"] 0 |> should equal 1
+        length [9;3;4;1;6;5;4] 0 |> should equal 7
 
     // Hint: https://msdn.microsoft.com/en-us/library/ee340354.aspx
     [<Test>]

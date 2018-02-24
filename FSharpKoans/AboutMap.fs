@@ -9,8 +9,8 @@ module ``15: Applying a map to a list`` =
     [<Test>]
     let ``01 Fixed-function mapping, the hard way (part 1).`` () =
         let map (xs : int list) : int list =
-            let rec add1 list =
-                match list with
+            let rec add1 list =                     //Check out 15.3, it gives a universal version of this
+                match list with                     // which is super handy
                 | [] -> []
                 | head :: tail -> (fun f -> f+1) head :: add1 tail
             add1 xs // write a function which adds 1 to each element
@@ -21,10 +21,15 @@ module ``15: Applying a map to a list`` =
         map [215] |> should equal [216]
         map [] |> should equal []
 
+
+        //TEAM NOTE: Check out this website if you want to find out how this works
+            //http://hestia.typepad.com/flatlander/2010/07/f-pattern-matching-for-beginners-part-4-lists-and-recursion.html
+
+
     [<Test>]
     let ``02 Fixed-function mapping, the hard way (part 2).`` () =
-        let map (xs : int list) : int list =
-            let rec doubleV list =
+        let map (xs : int list) : int list =        //Check out 15.3, it gives a universal version of this 
+            let rec doubleV list =                  // which is super handy
                 match list with
                 | [] -> []
                 | head :: tail -> (fun f -> f*2) head :: doubleV tail
@@ -47,11 +52,11 @@ module ``15: Applying a map to a list`` =
     [<Test>]
     let ``03 Specified-function mapping, the hard way`` () =
         let map (f : 'a -> 'b) (xs : 'a list) : 'b list =
-            let rec doAll f list =
+            let rec applyFun f list =
                 match list with
                 | [] -> []
-                | head :: tail -> f head :: doAll f tail // write a map which applies f to each element
-            doAll f xs
+                | head :: tail -> f head :: applyFun f tail // write a map which applies f to each element
+            applyFun f xs
         map (fun x -> x+1) [9;8;7] |> should equal [10;9;8]
         map ((*) 2) [9;8;7] |> should equal [18;16;14]
         map (fun x -> sprintf "%.2f wut?" x)  [9.3; 1.22] |> should equal ["9.30 wut?"; "1.22 wut?"]

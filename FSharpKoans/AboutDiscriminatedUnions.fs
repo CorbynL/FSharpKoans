@@ -46,8 +46,8 @@ module ``10: The Good Kind of Discrimination`` =
             | BPharm -> "Meh, it's OK."
             | BCom (Management, Economics) | BCom (Linguistics, Management) -> "Money, money, money."
             | BA (Linguistics, Philosophy) -> "A thinker, eh?"
-        randomOpinion (BSc (Mathematics, ComputerScience)) |> should equal "Good choice!"
-        randomOpinion (BSc (Economics, Mathematics)) |> should equal "!!SCIENCE!!"
+        randomOpinion (BSc (Linguistics ,ComputerScience)) |> should equal "Good choice!"
+        randomOpinion (BSc (Linguistics, Management))|> should equal "!!SCIENCE!!"
         randomOpinion (BCom (Management, Economics)) |> should equal "Money, money, money."
         randomOpinion (BCom (Linguistics, Management)) |> should equal "Money, money, money."
         randomOpinion (BA (Linguistics, Philosophy)) |> should equal "A thinker, eh?"
@@ -60,8 +60,8 @@ module ``10: The Good Kind of Discrimination`` =
 
     [<Test>]
     let ``03 A discriminated union case with associated data is a function`` () =
-        Broken |> should be ofType<FILL_ME_IN>
-        Rented |> should be ofType<FILL_ME_IN>
+        Broken |> should be ofType<int -> EquipmentStatus>
+        Rented |> should be ofType<string -> EquipmentStatus>
 
     type BinaryTree =
     | Empty
@@ -73,5 +73,5 @@ module ``10: The Good Kind of Discrimination`` =
             match x with
             | Empty -> 0
             | Node (_, a, b) -> 1 + max (depth a) (depth b)
-        let a = __ // <-- you may want to spread this over multiple lines and/or let-bindings ...!
+        let a = Node("", Node("", Node("", Node("", Empty, Empty), Empty), Empty) , Node("", Node("", Node("", Empty, Empty), Empty), Empty))   // <-- you may want to spread this over multiple lines and/or let-bindings ...!
         depth a |> should equal 4

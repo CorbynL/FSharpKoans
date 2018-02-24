@@ -33,9 +33,9 @@ module ``10: The Good Kind of Discrimination`` =
         let aDegree = BSc (Linguistics, ComputerScience)
         let anotherDegree = BPharm
         let philosopherKing = Masters Philosophy
-        aDegree |> should be ofType<FILL_ME_IN> 
-        anotherDegree |> should be ofType<FILL_ME_IN> 
-        philosopherKing |> should be ofType<FILL_ME_IN> 
+        aDegree |> should be ofType<UndergraduateDegree> 
+        anotherDegree |> should be ofType<UndergraduateDegree> 
+        philosopherKing |> should be ofType<PostgraduateDegree> 
    
     [<Test>]
     let ``02 Creating & pattern-matching a discriminated union`` () = 
@@ -44,14 +44,14 @@ module ``10: The Good Kind of Discrimination`` =
             | BSc (_, ComputerScience) | BSc (ComputerScience, _) -> "Good choice!"
             | BSc _ -> "!!SCIENCE!!"
             | BPharm -> "Meh, it's OK."
-            | FILL_ME_IN -> "Money, money, money."
-            | FILL_ME_IN -> "A thinker, eh?"
-        randomOpinion __ |> should equal "Good choice!"
-        randomOpinion __ |> should equal "!!SCIENCE!!"
+            | BCom (Management, Economics) | BCom (Linguistics, Management) -> "Money, money, money."
+            | BA (Linguistics, Philosophy) -> "A thinker, eh?"
+        randomOpinion (BSc (Mathematics, ComputerScience)) |> should equal "Good choice!"
+        randomOpinion (BSc (Economics, Mathematics)) |> should equal "!!SCIENCE!!"
         randomOpinion (BCom (Management, Economics)) |> should equal "Money, money, money."
         randomOpinion (BCom (Linguistics, Management)) |> should equal "Money, money, money."
         randomOpinion (BA (Linguistics, Philosophy)) |> should equal "A thinker, eh?"
-        randomOpinion __ |> should equal "Meh, it's OK."
+        randomOpinion BPharm |> should equal "Meh, it's OK."
 
     type EquipmentStatus =
     | Available

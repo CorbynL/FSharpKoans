@@ -6,11 +6,17 @@ Reversing a list.
 *)
 
 module ``14: Reversing a list`` =
+    open System.Runtime.Remoting.Metadata.W3cXsd2001
 
     [<Test>]
     let ``01 Reversing a list, the hard way`` () =
         let rev (xs : 'a list) : 'a list =
-            __ // write a function to reverse a list here.
+            let rec reverse n = function
+                | [] -> n
+                | a::xs -> reverse (a::n) xs
+            reverse [] xs
+            
+            //List.rev xs                     // write a function to reverse a list here.  (Not sure if it meant manually write it... or this line) Editor: Richard
         rev [9;8;7] |> should equal [7;8;9]
         rev [] |> should equal []
         rev [0] |> should equal [0]
@@ -19,7 +25,7 @@ module ``14: Reversing a list`` =
     // Hint: https://msdn.microsoft.com/en-us/library/ee340277.aspx
     [<Test>]
     let ``02 Reversing a list, the easy way`` () =
-        __ [9;8;7] |> should equal [7;8;9]
-        __ [] |> should equal []
-        __ [0] |> should equal [0]
-        __ [9;8;5;8;45] |> should equal [45;8;5;8;9]
+        List.rev [9;8;7] |> should equal [7;8;9]
+        List.rev [] |> should equal []
+        List.rev [0] |> should equal [0]
+        List.rev [9;8;5;8;45] |> should equal [45;8;5;8;9]

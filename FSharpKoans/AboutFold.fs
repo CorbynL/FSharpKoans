@@ -33,13 +33,7 @@ or something else), it's likely that you'll be able to use a fold.
 
 module ``17: Welcome to the functional fold`` =
     [<Test>]
-    let ``01 A fold which sums a list`` () =
-        let fold initialState xs =
-            let rec sumList nextState list =
-                match list with 
-                | [] -> nextState
-                | head::tail -> sumList (nextState + head) tail
-            sumList initialState xs                
+    let ``01 A fold which sums a list`` () =               
         let fold initialState xs =      // write a function to do what's described above
             let rec folder i list =
                 match list with
@@ -51,13 +45,6 @@ module ``17: Welcome to the functional fold`` =
 
     [<Test>]
     let ``02 A fold which multiplies a list`` () =
-        let fold initialState xs =
-            let rec mulList nextState list =
-                match list with 
-                | [] -> nextState
-                | head::tail -> mulList (nextState*head) tail
-            mulList initialState xs
-
         let fold initialState xs =      // write a function to multiply the elements of a list
             let rec folder i list =
                 match list with

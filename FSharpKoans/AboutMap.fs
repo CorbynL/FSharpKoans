@@ -12,7 +12,7 @@ module ``15: Applying a map to a list`` =
             let rec add1 list =                     //Check out 15.3, it gives a universal version of this
                 match list with                     // which is super handy
                 | [] -> []
-                | head :: tail -> (fun f -> f+1) head :: add1 tail
+                | head :: tail -> 1 + head :: add1 tail
             add1 xs // write a function which adds 1 to each element
              
         map [1; 2; 3; 4] |> should equal [2; 3; 4; 5]

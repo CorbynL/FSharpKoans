@@ -80,13 +80,8 @@ module ``17: Welcome to the functional fold`` =
                 match list with 
                 | [] -> nextState
                 | head::tail -> funlist (f (nextState) (head)) tail
-            funlist initialState xs
-
-            //let rec folder i list =             // write a function to do a fold.
-                //match list with
-                //| [] -> i
-                //| head::tail -> folder (f i head) tail
-            //folder initialState xs
+            funlist initialState xs // write a function to do a fold.
+              
         fold (+) 0 [1;2;3;4] |> should equal 10
         fold (*) 2 [1;2;3;4] |> should equal 48
         fold (fun state item -> sprintf "%s %s" state item) "items:" ["dog"; "cat"; "bat"; "rat"]

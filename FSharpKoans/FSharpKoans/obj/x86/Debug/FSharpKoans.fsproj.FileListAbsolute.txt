@@ -1,0 +1,17 @@
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\App.config
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FSharpKoans.dll.config
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FSharpKoans.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FSharpKoans.pdb
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FSharp.Core.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FsUnit.NUnit.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\NHamcrest.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\nunit.framework.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\System.ValueTuple.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FSharp.Core.xml
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FsUnit.NUnit.pdb
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\FsUnit.NUnit.xml
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\NHamcrest.pdb
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\bin\Debug\nunit.framework.xml
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\obj\x86\Debug\FSharpKoans.fsprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\obj\x86\Debug\FSharpKoans.dll
+C:\Users\Admin\Desktop\git_exercise\FSharpKoans\FSharpKoans\obj\x86\Debug\FSharpKoans.pdb

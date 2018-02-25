@@ -43,8 +43,6 @@ module ``18: Combining functions`` =
         let toString (x : int) = string x
         let toInt (x : float) = int x
         toInt |> should be ofType<float->int>
-        toString |> should be ofType<int->string>
-        toInt |> should be ofType<float -> int>
         toString |> should be ofType<int -> string>
         3.14 |> toInt |> toString |> should equal "3"
 

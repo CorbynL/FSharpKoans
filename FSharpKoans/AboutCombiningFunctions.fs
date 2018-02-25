@@ -42,8 +42,13 @@ module ``18: Combining functions`` =
     let ``02 The output type of one pipe must be the input type to the next`` () =
         let toString (x : int) = string x
         let toInt (x : float) = int x
+<<<<<<< HEAD
         toInt |> should be ofType<float->int>
         toString |> should be ofType<int->string>
+=======
+        toInt |> should be ofType<float -> int>
+        toString |> should be ofType<int -> string>
+>>>>>>> 24e2276587d9fd1d9a55435876c7e9d734e2cc06
         3.14 |> toInt |> toString |> should equal "3"
 
     (*

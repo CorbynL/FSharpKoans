@@ -34,41 +34,36 @@ or something else), it's likely that you'll be able to use a fold.
 module ``17: Welcome to the functional fold`` =
     [<Test>]
     let ``01 A fold which sums a list`` () =
-<<<<<<< HEAD
         let fold initialState xs =
             let rec sumList nextState list =
                 match list with 
                 | [] -> nextState
                 | head::tail -> sumList (nextState + head) tail
             sumList initialState xs                
-=======
         let fold initialState xs =      // write a function to do what's described above
             let rec folder i list =
                 match list with
                 | [] -> i
                 | head::tail -> folder (i + head) tail
             folder initialState xs 
->>>>>>> 24e2276587d9fd1d9a55435876c7e9d734e2cc06
         fold 0 [1; 2; 3; 4] |> should equal 10
         fold 100 [2;4;6;8] |> should equal 120
 
     [<Test>]
     let ``02 A fold which multiplies a list`` () =
-<<<<<<< HEAD
         let fold initialState xs =
             let rec mulList nextState list =
                 match list with 
                 | [] -> nextState
                 | head::tail -> mulList (nextState*head) tail
             mulList initialState xs
-=======
+
         let fold initialState xs =      // write a function to multiply the elements of a list
             let rec folder i list =
                 match list with
                 | [] -> i
                 | head::tail -> folder (i*head) tail
             folder initialState xs 
->>>>>>> 24e2276587d9fd1d9a55435876c7e9d734e2cc06
         fold 1 [99] |> should equal 99
         fold 2 [11] |> should equal 22
         fold 1 [1;3;5;7] |> should equal 105
@@ -81,20 +76,17 @@ module ``17: Welcome to the functional fold`` =
     [<Test>]
     let ``03 Folding, the hard way`` () =
         let fold (f : 'a -> 'b -> 'a) (initialState : 'a) (xs : 'b list) : 'a =
-<<<<<<< HEAD
             let rec funlist nextState list = 
                 match list with 
                 | [] -> nextState
                 | head::tail -> funlist (f (nextState) (head)) tail
             funlist initialState xs
 
-=======
-            let rec folder i list =             // write a function to do a fold.
-                match list with
-                | [] -> i
-                | head::tail -> folder (f i head) tail
-            folder initialState xs
->>>>>>> 24e2276587d9fd1d9a55435876c7e9d734e2cc06
+            //let rec folder i list =             // write a function to do a fold.
+                //match list with
+                //| [] -> i
+                //| head::tail -> folder (f i head) tail
+            //folder initialState xs
         fold (+) 0 [1;2;3;4] |> should equal 10
         fold (*) 2 [1;2;3;4] |> should equal 48
         fold (fun state item -> sprintf "%s %s" state item) "items:" ["dog"; "cat"; "bat"; "rat"]

@@ -32,14 +32,14 @@ module MushroomKingdom =
 module ``22: Modules`` = 
    [<Test>]
    let ``01 Modules can contain values and types`` () = 
-      MushroomKingdom.Mario.Name |> should equal __
-      MushroomKingdom.Mario.Occupation |> should equal __
-      MushroomKingdom.Mario |> should be ofType<FILL_ME_IN>
+      MushroomKingdom.Mario.Name |> should equal "Mario"
+      MushroomKingdom.Mario.Occupation |> should equal "Plumber"
+      MushroomKingdom.Mario |> should be ofType<MushroomKingdom.Character>
    
    [<Test>]
    let ``02 Modules can contain functions`` () = 
       let superMario = MushroomKingdom.powerUp MushroomKingdom.Mario
-      superMario.Power |> should equal __
+      superMario.Power |> should equal MushroomKingdom.Power.Mushroom
 
 // Make sure your eyes don't skip over the next line of code, OK?
 // It's an important line!

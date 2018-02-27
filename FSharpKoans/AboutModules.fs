@@ -49,6 +49,6 @@ module ``23: Opened modules`` =
    [<Test>]
    let ``01 Opened modules bring their contents into scope``() =
       // Notice tham I'm *not* saying MushroomKingdom.whatever below.
-      Mario.Name |> should equal __
-      Mario.Occupation |> should equal __
-      Mario.Power |> should equal __
+      Mario.Name |> should equal "Mario"
+      Mario.Occupation |> should equal "Plumber"
+      Mario.Power |> should equal None

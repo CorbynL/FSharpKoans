@@ -18,9 +18,17 @@ no *semantic* difference between them.
 module ``19: Other list functions`` =
     // List.exists
     [<Test>]
-    let ``01 exists: finding whether any matching item exists`` () =
-        let exists (f : 'a -> bool) (xs : 'a list) : bool =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee370309.aspx
+    let ``01 exists: finding whether any matching item exists`` () =  // Does this: https://msdn.microsoft.com/en-us/library/ee370309.aspx
+        let exists (f : 'a  -> bool) (xs : 'a list) : bool =
+            let rec findVal list =
+                match list with
+                | [] -> false
+                | head::tail -> 
+                    match f head with
+                    | true -> true
+                    | _ -> findVal tail
+            findVal xs
+                
         exists ((=) 4) [7;6;5;4;5] |> should equal true
         exists (fun x -> String.length x < 4) ["true"; "false"] |> should equal false
         exists (fun _ -> true) [] |> should equal false
@@ -28,8 +36,16 @@ module ``19: Other list functions`` =
     // List.partition
     [<Test>]
     let ``02 partition: splitting a list based on a criterion`` () =
-        let partition (f : 'a -> bool) (xs : 'a list) : ('a list) * ('a list) =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee353782.aspx
+        let partition (f : 'a -> bool) (xs : 'a list) : ('a list) * ('a list) = 
+            let rec findVals partA partB list =
+                 match list with               
+                 | head::tail -> 
+                    match f head with
+                    | true -> findVals (head::partA) partB tail
+                    | false -> findVals partA (head::partB) tail
+                 | [] -> List.rev partA, List.rev partB
+            findVals [] [] xs
+                     
         let a, b = partition (fun x -> x%2=0) [1;2;3;4;5;6;7;8;9;10]
         a |> should equal [2;4;6;8;10]
         b |> should equal [1;3;5;7;9]
@@ -42,25 +58,46 @@ module ``19: Other list functions`` =
 
     // List.init
     [<Test>]
-    let ``03 init: creating a list based on a size and a function`` () =
+    let ``03 init: creating a list based on a size and a function`` () = // Does this: https://msdn.microsoft.com/en-us/library/ee370497.aspx
         let init (n : int) (f : int -> 'a) : 'a list =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee370497.aspx
+            let rec initList i list =
+                match i=n with
+                | true -> []
+                | _ -> f i  :: initList (i + 1) list                     
+            initList 0 []
+
         init 10 (fun x -> x*2) |> should equal [0;2;4;6;8;10;12;14;16;18]
         init 4 (sprintf "(%d)") |> should equal ["(0)";"(1)";"(2)";"(3)"]
 
     // List.tryFind
     [<Test>]
-    let ``04 tryFind: find the first matching element, if any`` () =
+    let ``04 tryFind: find the first matching element, if any`` () = // Does this: https://msdn.microsoft.com/en-us/library/ee353506.aspx
         let tryFind (p : 'a -> bool) (xs : 'a list) : 'a option =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee353506.aspx
+            let rec search list =
+                match list with
+                | head::tail -> 
+                    match p head with
+                    | true -> Some head
+                    | _ -> search tail
+                | [] -> None
+            search xs
+
         tryFind (fun x -> x<=45) [100;85;25;55;6] |> should equal (Some 25)
         tryFind (fun x -> x>450) [100;85;25;55;6] |> should equal None
 
     // List.tryPick
     [<Test>]
-    let ``05 tryPick: find the first matching element, if any, and transform it`` () =
+    let ``05 tryPick: find the first matching element, if any, and transform it`` () =  // Does this: https://msdn.microsoft.com/en-us/library/ee353814.aspx
         let tryPick (p : 'a -> 'b option) (xs : 'a list) : 'b option =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee353814.aspx
+            let rec search list =
+                match list with
+                | head::tail -> 
+                    match p head with
+                    | None -> search tail
+                    | _ -> p head
+                | [] -> None
+            search xs    
+            
         let f x =
             match x<=45 with
             | true -> Some(x*2)
@@ -89,8 +126,16 @@ module ``19: Other list functions`` =
         // Think about this: why does the signature of `choose` have to be like this?
         // - why can't it take an 'a->'b, instead of an 'a->'b option ?
         // - why does it return a 'b list, and not a 'b list option ?
-        let choose (p : 'a -> 'b option) (xs : 'a list) : 'b list =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee353456.aspx
+        let choose (p : 'a -> 'b option) (xs : 'a list) : 'b list =             // Does this: https://msdn.microsoft.com/en-us/library/ee353456.aspx
+            let rec search list  =
+                match list with
+                | head::tail ->
+                    match p head with
+                    | None -> search tail   
+                    | _ -> (p head).Value :: search tail
+                | [] -> []
+            search xs     
+
         let f x =
             match x<=45 with
             | true -> Some(x*2)
@@ -106,9 +151,14 @@ module ``19: Other list functions`` =
         choose g ["And the winner is..."] |> should equal []
 
     [<Test>]
-    let ``07 mapi: like map, but passes along an item index as well`` () =
+    let ``07 mapi: like map, but passes along an item index as well`` () = // Does this: https://msdn.microsoft.com/en-us/library/ee353425.aspx
         let mapi (f : int -> 'a -> 'b) (xs : 'a list) : 'b list =
-            __ // Does this: https://msdn.microsoft.com/en-us/library/ee353425.aspx
+            let rec AdventureMap i list =
+                match list with
+                | head::tail -> f i head :: AdventureMap (i + 1) tail
+                | [] -> []
+            AdventureMap 0 xs
+
         mapi (fun i x -> -i, x+1) [9;8;7;6] |> should equal [0,10; -1,9; -2,8; -3,7]
         let hailstone i t =
             match i%2 with

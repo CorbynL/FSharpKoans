@@ -53,6 +53,7 @@ module ``20: Unit 00`` =
             match p < List.length scrollPositions && p >= 0 with
             | true -> scrollPositions.[p]
             | _ -> fun () -> "Nothing to do"
+
         scrollPositions |> should be ofType<(unit->string)list>
         getWorkAtPosition |> should be ofType<int->unit->string>
         getWorkAtPosition 3 |> should be ofType<unit->string>

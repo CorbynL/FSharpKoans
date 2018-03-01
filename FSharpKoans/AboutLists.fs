@@ -17,7 +17,7 @@ module ``05: I Have Here In My Hand A List`` =
         let myList = "apple"::"grape"::"pear"::"biscuit"::[]
         let myOtherList = "orange"::"lemon"::"princess"::[ "queen" ]
         let myNextList = "lily"::"sunflower"::["daisy"; "carrot"] // you may use [ and ] symbols on this line.
-        let myLastList =  "naartjie"::"raisin"::["apple"; "grape"; "pear"; "biscuit"] // DO NOT use [ or ] symbols on this line!
+        let myLastList =  "naartjie"::"raisin"::myList // DO NOT use [ or ] symbols on this line!
         myList |> should equal [ "apple"; "grape"; "pear"; "biscuit" ]
         myOtherList |> should equal [ "orange"; "lemon"; "princess"; "queen" ]
         myNextList |> should equal ["lily"; "sunflower"; "daisy"; "carrot"]
@@ -27,7 +27,7 @@ module ``05: I Have Here In My Hand A List`` =
     let ``03 Creating a list (via concatenation).`` () =
         let a = [902; 10]
         let b = [3; 13; 37]
-        let result = [902; 10] @ [3; 13; 37]
+        let result = a @ b
         result |> should equal [902; 10; 3; 13; 37]
 
     [<Test>]

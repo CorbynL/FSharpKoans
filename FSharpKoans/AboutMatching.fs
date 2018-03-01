@@ -21,8 +21,8 @@ module ``03: Match expressions`` =
     let ``02 Match expressions are expressions, not statements`` () =
         let result =
             match 9001 with
-            | 9001 -> // <-- use a variable pattern here!
-                match 9001 + 1000 with
+            | y -> 
+                match y + 1000 with
                 | 10001 -> "Hah! It's a palindromic number!"
                 | x -> "Some number."
             | x -> "I should have matched the other expression."

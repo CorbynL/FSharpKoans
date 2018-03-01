@@ -22,12 +22,11 @@ type Book =
      Year : int }
 
 // and now, the tests:
-module ``06: On the Record`` =
-    open System.Net
+module ``06: On the Record`` =    
 
     [<Test>]
     let ``01 Creating records`` () =
-        let myRecord = {Title = "Steelheart";Author ="Brandon Sanderson"; Year = 2013}
+        let myRecord = {Title = "Steelheart"; Author = "Brandon Sanderson"; Year = 2013}
         myRecord.Title |> should equal "Steelheart"
         myRecord.Author |> should equal "Brandon Sanderson"
         myRecord.Year |> should equal 2013
@@ -47,7 +46,7 @@ module ``06: On the Record`` =
     [<Test>]
     let ``03 Decomposing with a record pattern`` () =
         let book = { Title="Dune"; Author="Frank Herbert"; Year=1965 }
-        let {Title = a;Author=b;Year=c} = book
+        let {Title = a; Year=c} = book
         a |> should equal "Dune" // DO NOT use a . symbol in your answer
         c |> should equal 1965 // DO NOT use a . symbol in your answer
 

@@ -5,8 +5,7 @@ open NUnit.Framework
 Reversing a list.
 *)
 
-module ``14: Reversing a list`` =
-    open System.Runtime.Remoting.Metadata.W3cXsd2001
+module ``14: Reversing a list`` =    
 
     [<Test>]
     let ``01 Reversing a list, the hard way`` () =

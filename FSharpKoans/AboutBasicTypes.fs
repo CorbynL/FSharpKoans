@@ -7,7 +7,6 @@ open NUnit.Framework
 *)
 
 module ``07: Strings and Conversions`` =
-    open System.Security.AccessControl
 
     [<Test>]
     let ``01 Finding the length of a string`` () =
